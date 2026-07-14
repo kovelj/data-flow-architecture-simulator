@@ -14,7 +14,7 @@
 #ifndef _COLLECT_
 #define _COLLECT_
 
-#include "bound.h"
+#include "Bound.h"
 #include "unbound.h"
 
 /////////////////////////////////////////////////////////////////////
