@@ -1,0 +1,28 @@
+target_sources(tsslib
+        PRIVATE
+            ${CMAKE_CURRENT_LIST_DIR}/CrossSem.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/FlowSink.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/FlowSource.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/Pipe.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/QueServer.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/Switch1to3.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/VModelChecker.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/VModelDocumenter.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/VSimReporter.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/VTxtOutputGen.cpp
+        PUBLIC
+        FILE_SET HEADERS
+        BASE_DIRS
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss"
+        FILES
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/CrossSem.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/FlowSink.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/FlowSource.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/Pipe.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/QueServer.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/Switch1to3.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/VModelChecker.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/VModelDocumenter.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/VSimReporter.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/tss/VTxtOutputGen.h"
+)
