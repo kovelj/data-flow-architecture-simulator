@@ -1,0 +1,27 @@
+target_sources(simulationEngine
+        PRIVATE
+            ${CMAKE_CURRENT_LIST_DIR}/AbstractConcepts.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/RndGen.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/SimEng.cpp
+            ${CMAKE_CURRENT_LIST_DIR}/Visitors.cpp
+        PUBLIC
+        FILE_SET HEADERS
+        BASE_DIRS
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/util"
+        FILES
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/AbstractConcepts.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/Event.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/ExpRndGen.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/Interfaces.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/Model.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/Modeling.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/RndGen.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/Sched.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/Types.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/UniRndGen.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/concepts/Visitor.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/util/Bound.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/util/Collect.h"
+            "${CMAKE_CURRENT_LIST_DIR}/../../include/util/unbound.h"
+)
