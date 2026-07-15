@@ -5,23 +5,21 @@
 
 #include<iostream>
 
-using namespace std;
-class Exception:public exception {
+class Exception : public std::exception {
 public:
-	Exception(const char* msg) :exception(msg) {}
+	Exception(const char* msg) : std::exception(msg) {}
 protected:
 	//Moguca protected sekcija!
 private:
 	//Moguca private sekcija!
 };
 
-class VarNotAvailableException :public Exception {
+class VarNotAvailableException : public Exception {
 public:
-	VarNotAvailableException(const char* erroDesc) :Exception(erroDesc) {}
+	VarNotAvailableException(const char* erroDesc) : Exception(erroDesc) {}
 protected:
 	//Moguca protected sekcija!
 private:
 	//Moguca private sekcija!
 };
-
 #endif//! _EXCEPTIONS_H_

@@ -5,18 +5,15 @@
 #include<string>
 #include<vector>
 
-using namespace std;
 class Memory {
 
 public:
-	double get(string varName);
-	void   set(string varName, double val);
-protected:
+	double get(std::string varName);
+	void   set(std::string varName, double val);
 
 private:
-	//
-	vector<char> promenljive_;
-	vector<float> vrednost_;
+	std::vector<char> promenljive_;
+	std::vector<float> vrednost_;
 };
 
 #endif//! _MEMORY_H_

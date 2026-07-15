@@ -16,7 +16,7 @@ bool Strategija::isOperand(const char c) const
 }
 
 
-void Program::citajProg(fstream& program,vector<char>& postfix)
+void Program::citajProg(std::fstream& program, std::vector<char>& postfix)
 {
 	char dodeli;
 	char c;
@@ -47,7 +47,7 @@ int Program::prioritet(const char c) const
 		return 1;
 }
 
-void Program::infixPostfix(fstream& program)
+void Program::infixPostfix(std::fstream& program)
 {
 	vec_citao_ = false;
 	prvo_citanje_ = true;
@@ -66,7 +66,7 @@ void Program::infixPostfix(fstream& program)
 		{
 			if (c == '-')
 				prvo_citanje_ = false;
-			string operand;
+			std::string operand;
 			citajOperand(program,operand);
 			slikaOgledalo(operand);
 		}
@@ -97,7 +97,7 @@ void Program::infixPostfix(fstream& program)
 					}
 				}
 				if (!nasao)
-					cout<<"Postoji greska jer nije nadjena ( program ne garantuje tacnost rezultata ako se uopste izvrsi !!!"<<endl;
+					std::cout<<"Postoji greska jer nije nadjena ( program ne garantuje tacnost rezultata ako se uopste izvrsi !!!" << std::endl;
 				vec_citao_ = false;
 			}
 			else if (prioritet(c) > prioritet(stack_.top()))
@@ -139,7 +139,7 @@ void Program::infixPostfix(fstream& program)
 	}
 }
 
-void Program::citajOperand(fstream& program, string& operand)
+void Program::citajOperand(std::fstream& program, std::string& operand)
 {
 	operand += c;
 
@@ -158,7 +158,7 @@ void Program::citajOperand(fstream& program, string& operand)
 	}
 }
 
-void Program::prepisi(vector<char>& postfix) const
+void Program::prepisi(std::vector<char>& postfix) const
 {
 	//Svrha metode je da prepise ovo jer me mrzi da svud u metodama prenosim ovaj vektor iz Compiler-a, a zbog prava pristupa cu koristiti lokalni za ovu klasu!!!
 	for (int i = 0; i < postfix_.size(); i++)
@@ -169,7 +169,7 @@ void Program::prepisi(vector<char>& postfix) const
 	postfix.push_back('=');
 }
 
-void Program::slikaOgledalo(string& operand)
+void Program::slikaOgledalo(std::string& operand)
 {
 	//Hocu da mi se izmedu bilo koja dva da li operanda nalazi razmak ' '.Ali ako je prvi operand koji se upisuje ispred njega mi nije potreban razmak.
 
@@ -187,11 +187,11 @@ void Program::citajStack()
 	stack_.pop();
 }
 
-void Konfiguracija::citajKonf(const string& ime_fajla,vector<int>& konfiguracija)
+void Konfiguracija::citajKonf(const std::string& ime_fajla, std::vector<int>& konfiguracija)
 {
-	fstream konf_fajl(ime_fajla, ios::in);
-	while (konf_fajl.peek() != EOF) 
-	{
+	std::fstream konf_fajl(ime_fajla, std::ios::in);
+
+	while (konf_fajl.peek() != EOF) {
 		char t;
 		konf_fajl >> t;
 		
@@ -215,17 +215,17 @@ void Konfiguracija::citajKonf(const string& ime_fajla,vector<int>& konfiguracija
 	}
 	for (int i = 0; i < 6; i++)
 		std::cout << konfiguracija[i];
-	std::cout << endl;
+	std::cout << std::endl;
 	konf_fajl.close();
 }
 
 
-int Konfiguracija::citajVrednosti(fstream& ulazni_fajl) const
+int Konfiguracija::citajVrednosti(std::fstream& ulazni_fajl) const
 {
-	string broj;
+	std::string broj;
 	char c;
-	while (ulazni_fajl.peek() != '\n')
-	{
+
+	while (ulazni_fajl.peek() != '\n') {
 		ulazni_fajl >> c;
 		broj += c;
 	}
@@ -239,7 +239,7 @@ int Konfiguracija::citajVrednosti(fstream& ulazni_fajl) const
 	return vrati;
 }
 
-void Konfiguracija::citajKasnjenje(fstream& ulazni_fajl, vector<int>& konfiguracija)
+void Konfiguracija::citajKasnjenje(std::fstream& ulazni_fajl, std::vector<int>& konfiguracija)
 {
 	char operacija;
 	char t;
@@ -250,15 +250,14 @@ void Konfiguracija::citajKasnjenje(fstream& ulazni_fajl, vector<int>& konfigurac
 	konfiguracija.push_back(b);
 }
 
-void Konfiguracija::citajTipKonf(fstream& fajl,vector<int>& konfiguracija)
+void Konfiguracija::citajTipKonf(std::fstream& fajl, std::vector<int>& konfiguracija)
 {
 	bool desno = false, simple = true;
-	string kompilacija;
+	std::string kompilacija;
 	char t;
 	fajl >> t;
 
-	while (fajl.peek() != EOF)
-	{
+	while (fajl.peek() != EOF) {
 		if (t == '=') desno = true;
 		if (!desno)
 			fajl >> t;
@@ -275,24 +274,22 @@ void Konfiguracija::citajTipKonf(fstream& fajl,vector<int>& konfiguracija)
 
 static int i = 0;
 
-void NojmanIspis::pisi(fstream& imf, vector<char>& podaci)
+void NojmanIspis::pisi(std::fstream& imf, std::vector<char>& podaci)
 {
 	//U ovom vektoru se u sledecem formatu naleze podaci --[posl. token u koji se upisuje nesto]'blanko'[Ako je prvi oerand negiran{-}Moze biti, a i nemora]'blanko'[operadni[blanko]operatori[blanko]....]
 
 	i =2 ;
 
-	string dodeli;
+	std::string dodeli;
 	dodeli += podaci[0];
 
-	string prvi, drugi;
-	string ne_pisi = "nema tokena";
+	std::string prvi, drugi;
+	std::string ne_pisi = "nema tokena";
 
 
-	while (podaci[i] != '=') 
-	{
+	while (podaci[i] != '=')  {
 		//Ako je operand
-		if (!isOperator(podaci[i])) 
-		{
+		if (!isOperator(podaci[i])) {
 			if (!stack_.empty())
 				stack_.push(' ');
 		
@@ -301,13 +298,12 @@ void NojmanIspis::pisi(fstream& imf, vector<char>& podaci)
 			i++;
 		}
 		//Ako je operator
-		else if(isOperator(podaci[i]))
-		{
+		else if(isOperator(podaci[i])) {
 			char operacija = podaci[i];
 			i += 2;
 			
-			string token = "t";
-			token += to_string(IDTokena);
+			std::string token = "t";
+			token += std::to_string(IDTokena);
 			IDTokena++;
 			
 			ispisiStek(drugi);
@@ -329,21 +325,20 @@ void NojmanIspis::pisi(fstream& imf, vector<char>& podaci)
 
 }
 
-void NojmanIspis::ispisiPoFormatu(fstream& fajl, char operacija, string& prviToken, string& drugiToken, string& treciToken)
+void NojmanIspis::ispisiPoFormatu(std::fstream& fajl, char operacija, std::string& prviToken, std::string& drugiToken, std::string& treciToken)
 {
 	if (treciToken == "nema tokena")
 
-		fajl << '[' << IDReda << ']' << ' ' << operacija << ' ' << prviToken << ' ' << drugiToken << endl;
+		fajl << '[' << IDReda << ']' << ' ' << operacija << ' ' << prviToken << ' ' << drugiToken << std::endl;
 	else
-		fajl << '[' << IDReda << ']' << ' ' << operacija << ' ' << prviToken << ' ' << drugiToken << ' ' << treciToken << endl;
+		fajl << '[' << IDReda << ']' << ' ' << operacija << ' ' << prviToken << ' ' << drugiToken << ' ' << treciToken << std::endl;
 
 	IDReda++;
 }
 
-void NojmanIspis::ispisiStek(string& token)
+void NojmanIspis::ispisiStek(std::string& token)
 {
-	while (!stack_.empty() && stack_.top() != ' ')
-	{
+	while (!stack_.empty() && stack_.top() != ' ') {
 		token += stack_.top();
 		stack_.pop();
 	}

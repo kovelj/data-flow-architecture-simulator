@@ -6,8 +6,7 @@ void Compiler::strategijaBiranje(Strategija* strategija)
 	strategija_= strategija;
 }
 
-
-void Compiler::kompajluj(const string& ime,int tip =0)
+void Compiler::kompajluj(const std::string& ime, int tip =0)
 {
 	
 	//tip=0 -config.txt, tip=1 -program.txt
@@ -21,8 +20,7 @@ void Compiler::kompajluj(const string& ime,int tip =0)
 		IDReda = 1;
 		IDTokena = 1;
 	}
-	else 
-	{
+	else {
 		//Zelim da stalno menjam strategiju pri citanju programskog fajla.
 		//Da se nakon svakog reda citanja izvrsi ipis u .imf fajl u zavisnosti sta se nalazi u tom redu programskog fajla.
 		
@@ -37,14 +35,12 @@ void Compiler::kompajluj(const string& ime,int tip =0)
 		else if (kompilacija == 1)
 			ispisiImfSimple(ime);
 	}
-
-	
 }
 
-void Compiler::ispisiImfSimple(const string& ime)
+void Compiler::ispisiImfSimple(const std::string& ime)
 {
-	fstream program(ime + ".txt", ios::in);
-	fstream imf(ime+".imf", ios::out);
+	std::fstream program(ime + ".txt", std::ios::in);
+	std::fstream imf(ime+".imf", std::ios::out);
 	
 	while (program.peek() != EOF) 
 	{
@@ -58,13 +54,12 @@ void Compiler::ispisiImfSimple(const string& ime)
 
 	program.close();
 	imf.close();
-
 }
 
-void Compiler::ispisiImfAdvanced(const string& ime)
+void Compiler::ispisiImfAdvanced(const std::string& ime)
 {
-	fstream fajl(ime + ".txt", ios::in);
-	fstream program(ime + ".imf", ios::out);
+	std::fstream fajl(ime + ".txt", std::ios::in);
+	std::fstream program(ime + ".imf", std::ios::out);
 	fajl.close();
 	program.close();
 }
