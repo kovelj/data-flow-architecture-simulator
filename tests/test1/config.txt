@@ -1,0 +1,6 @@
+Ta = 8
+Tm = 16
+Te = 24
+Tw = 34
+Nw = 1
+compilation = simple
