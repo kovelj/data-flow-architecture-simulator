@@ -1,5 +1,6 @@
 target_sources(${PROJECT_NAME}
         PRIVATE
+            ConfigReader.cpp
             Compiler.cpp
             Memory.cpp
             Strategija.cpp)

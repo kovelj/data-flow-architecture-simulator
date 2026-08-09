@@ -1,10 +1,10 @@
 #include "Memory.h"
 
-double Memory::get(string VarName)
+double Memory::get(std::string VarName)
 {
 	return 0.0;
 }
 
-void Memory::set(string varName, double val)
+void Memory::set(std::string varName, double val)
 {
 }
